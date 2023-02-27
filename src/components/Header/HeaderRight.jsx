@@ -1,4 +1,4 @@
-import header from '../assets/header-right.svg';
+import header from '../../assets/header-right.svg';
 
 function HeaderRight(props) {
     return (

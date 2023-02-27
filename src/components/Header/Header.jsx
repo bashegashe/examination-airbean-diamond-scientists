@@ -1,4 +1,4 @@
-import header from '../assets/header.svg';
+import header from '../../assets/header.svg';
 
 function Header(props) {
     return (
