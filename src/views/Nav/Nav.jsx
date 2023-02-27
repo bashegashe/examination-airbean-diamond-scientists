@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import "./Nav.css"
 
 const Nav = () => {
@@ -11,7 +12,7 @@ const Nav = () => {
                 </svg>
             </header>
             <section className='nav__menu'>
-                <h2>Meny</h2>
+                <Link to={"/menu"}> <h2>Meny</h2> </Link>
                 <hr />
                 <h2>Vårt kaffe</h2>
                 <hr />
