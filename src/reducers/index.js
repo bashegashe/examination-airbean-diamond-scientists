@@ -1,15 +1,12 @@
-function rootReducer(state = {}, action) {
-    return {
-        init: ((state = true, action) => {
-	    return state;
-	})(state.init, action),
+const initialState = {
+    cart: []
+};
+
+function rootReducer(state = initialState, action) {
+    switch(action.type) {
+        default: 
+            return state;
     }
 }
-
-/** Samma som ovan men använder combineReducers istället
- * const rootReducer = combineReducers({
- *     init: initReducer,
- * });
- */
 
 export default rootReducer;
