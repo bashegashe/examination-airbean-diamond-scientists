@@ -1,0 +1,11 @@
+@use 'scss/main';
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #FFF;
+    min-width: 320px;
+    min-height: 100vh;
+}
