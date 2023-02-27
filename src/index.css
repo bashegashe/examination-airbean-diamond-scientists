@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap');
+
 * {
     box-sizing: border-box;
 }
@@ -7,4 +10,12 @@ body {
     max-width: 375px;
     min-height: 100vh;
     margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'PT Serif', serif;
+}
+
+p, span {
+    font-family: 'Work Sans', sans-serif;
 }
