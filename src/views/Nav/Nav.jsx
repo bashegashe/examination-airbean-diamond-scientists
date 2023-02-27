@@ -14,13 +14,13 @@ const Nav = () => {
             <section className='nav__menu'>
                 <Link to={"/menu"}> <h2>Meny</h2> </Link>
                 <hr />
-                <h2>Vårt kaffe</h2>
+                <Link to={"/about"}><h2>Vårt kaffe</h2></Link>
                 <hr />
-                <h2>Min profil</h2>
+                <Link to={"/profile"}><h2>Min profil</h2></Link>
                 <hr />
-                <h2>Orderstatus</h2>
+                <Link to={"/status"}><h2>Orderstatus</h2></Link>
                 <hr />
-                <h2>Orderhistorik</h2>
+                <Link to={"/profile"}><h2>Orderhistorik</h2></Link>
             </section>
         </div>
     );
