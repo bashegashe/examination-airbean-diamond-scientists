@@ -5,5 +5,39 @@
 }
 .nav{
     background-color: #2F2926;
-    height: 655px;
+    height: 667px;
+}
+
+.nav__header{
+    height: 70px;
+}
+
+.nav__header svg{
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    margin: 1rem;
+
+}
+
+.nav__menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem;
+}
+
+.nav h2{
+    font-size: 32px;
+    color: #FFFFFF;
+    margin: 1rem 0rem;
+}
+
+.nav hr{
+    width: 48px;
+    height: 1px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
