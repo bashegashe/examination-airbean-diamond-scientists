@@ -1,10 +1,11 @@
 .menu {
-  height: 839px;
+  min-height: 839px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: #f3e4e1;
   position: relative;
+  /* z-index: 3; */
 }
 
 .nav {
@@ -27,6 +28,7 @@
   border-radius: 50%;
   position: relative;
   cursor: pointer;
+  z-index: 2;
 }
 
 .nav__cart-products {
@@ -63,9 +65,11 @@ main {
 .product__section {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 20px;
 }
 
-.modal__dark {
-  background: rgba(0, 0, 0, 0.7);
+.menu.modal__dark {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
 }
