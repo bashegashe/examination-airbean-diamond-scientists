@@ -3,6 +3,9 @@
     margin: 0;
     padding: 0;
 }
+body{
+    margin-top: 2rem;
+}
 .nav{
     background-color: #2F2926;
     height: 667px;
