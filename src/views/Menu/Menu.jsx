@@ -24,7 +24,9 @@ function Menu() {
   }, []);
 
   return (
-    <section className={`menu ${showModal ? 'modal__dark' : ''}`}>
+    <section className='menu'>
+      <div style={{display: showModal ? 'block' : 'none'}} class="modal"></div>
+      
       <Header />
       <nav className="nav">
         <img src={menuLogo} alt="" />
