@@ -19,6 +19,10 @@
     font-weight: 400;
 }
 
+.status__header span{
+    font-weight: 700;
+}
+
 .status__section-drone{
     display: flex;
     justify-content: center;
