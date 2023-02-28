@@ -24,9 +24,12 @@ function Menu() {
   }, []);
 
   return (
-    <section className='menu'>
-      <div style={{display: showModal ? 'block' : 'none'}} class="modal"></div>
-      
+    <section className="menu">
+      <div
+        style={{ display: showModal ? 'block' : 'none' }}
+        className="modal"
+      ></div>
+
       <Header />
       <nav className="nav">
         <img src={menuLogo} alt="" />
@@ -51,6 +54,7 @@ function Menu() {
               title={item.title}
               description={item.desc}
               price={item.price}
+              key={item.id}
             />
           ))}
         </section>
