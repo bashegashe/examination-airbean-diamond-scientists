@@ -2,7 +2,7 @@ import './Button.css';
 
 function Button(props) {
     return (
-        <button class={props.type === 'light' ? 'button--light' : 'button--dark' }>{props.children}</button>
+        <button className={props.type === 'light' ? 'button--light' : 'button--dark' }>{props.children}</button>
     );
 }
 
