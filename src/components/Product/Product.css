@@ -24,6 +24,12 @@ p {
   font-size: 23px;
 }
 
+.product__name h3 span {
+  font-size: 12px;
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.4);
+}
+
 .product__name p {
   font-size: 12px;
 }
