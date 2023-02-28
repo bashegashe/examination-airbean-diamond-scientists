@@ -4,9 +4,9 @@ import plusSignLogo from '../../assets/Vector 3.svg';
 function Product() {
   return (
     <article className="product">
-      <section className="product__add">
+      <button className="product__add">
         <img src={plusSignLogo} alt="" />
-      </section>
+      </button>
       <section className="product__name">
         <h3>
           Bryggkaffe<span>...............</span>

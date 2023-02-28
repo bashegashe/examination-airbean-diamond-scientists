@@ -13,6 +13,7 @@
   padding: 15px;
   position: absolute;
   width: 100%;
+  cursor: pointer;
 }
 
 .nav__cart {
@@ -24,6 +25,7 @@
   background-color: #000;
   border-radius: 50%;
   position: relative;
+  cursor: pointer;
 }
 
 .nav__cart-products {
