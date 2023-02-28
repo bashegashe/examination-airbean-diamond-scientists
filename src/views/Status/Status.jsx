@@ -15,7 +15,7 @@ const Status = () => {
                 <p><span>13</span> minuter</p>
             </section>
             <section className={styles['status__section-bot']}>
-                <Button type={styles.light}>Ok, cool!</Button>
+                <Button type={'light'}>Ok, cool!</Button>
             </section>
         </div>
     );

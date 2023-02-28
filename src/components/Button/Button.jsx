@@ -1,8 +1,12 @@
-import './Button.css';
+import styles from './Button.module.css';
 
 function Button(props) {
     return (
-        <button className={props.type === 'light' ? 'button--light' : 'button--dark' }>{props.children}</button>
+        <button
+            className={props.type === 'light' ? styles['button--light'] : styles['button--dark']}
+        >
+            {props.children}
+        </button>
     );
 }
 

@@ -1,6 +1,5 @@
 .button--dark {
     background: #2F2926;
-    border-radius: 50px;
     min-width: 248px;
     min-height: 55px;
     border-radius: 50px;
@@ -14,7 +13,6 @@
 
 .button--light {
     background: #FFFFFF;
-    border-radius: 50px;
     min-width: 184px;
     min-height: 55px;
     border-radius: 50px;
