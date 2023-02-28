@@ -7,11 +7,7 @@ import menuLogo from '../../assets/navicon-open.svg';
 import shoppingCartLogo from '../../assets/bag.svg';
 import Cart from '../../components/Cart/Cart';
 import { getCoffeMenu } from '../../utils/api';
-<<<<<<< Updated upstream
-
-=======
 import { Link, useLocation } from 'react-router-dom';
->>>>>>> Stashed changes
 function Menu() {
   const { state } = useLocation();
 
@@ -42,9 +38,9 @@ function Menu() {
       ></div>
 
       <Header />
-      <nav className="nav">
+      <nav className={styles.nav}>
         <Link to="/nav" state={{ products }}><img src={menuLogo} alt="" /></Link>
-        <section onClick={showModalHandler} className="nav__cart">
+        <section onClick={showModalHandler} className={styles.nav__cart}>
           <img src={shoppingCartLogo} alt="" />
           <section className={styles['nav__cart-products']}>
             <span>0</span>

@@ -9,7 +9,7 @@
   align-items: center;
   margin: 2rem auto;
   position: absolute;
-  top: 35%;
+  top: 38%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -44,6 +44,7 @@
   font-size: 32px;
   line-height: 38px;
   color: #2f2926;
+  margin: 2rem 0;
 }
 
 .cartTotal {
@@ -76,7 +77,7 @@
 
 .cartTotal__info {
   display: block;
-  margin-top: -20px;
+  /* margin-top: -20px; */
   font-size: 12px;
   line-height: 130%;
 }
