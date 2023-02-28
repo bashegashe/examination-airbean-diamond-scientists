@@ -1,10 +1,7 @@
 import './App.css';
-import Menu from './views/Menu/Menu';
+import Nav from './views/Nav/Nav';
+
 function App() {
-  return (
-    <div className="App">
-      <Menu />
-    </div>
-  );
+  return <div className="App"></div>;
 }
 export default App;
