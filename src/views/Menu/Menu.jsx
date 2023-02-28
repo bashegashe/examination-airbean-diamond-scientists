@@ -7,8 +7,14 @@ import menuLogo from '../../assets/navicon-open.svg';
 import shoppingCartLogo from '../../assets/bag.svg';
 import Cart from '../../components/Cart/Cart';
 import { getCoffeMenu } from '../../utils/api';
+<<<<<<< Updated upstream
 
+=======
+import { Link, useLocation } from 'react-router-dom';
+>>>>>>> Stashed changes
 function Menu() {
+  const { state } = useLocation();
+
   const [showModal, setShowModal] = useState(false);
   const [products, setProducts] = useState([]);
 
@@ -21,7 +27,11 @@ function Menu() {
       const res = await getCoffeMenu();
       setProducts(res);
     }
-    getData();
+
+    if (state?.products)
+      setProducts(state.products);
+    else
+      getData();
   }, []);
 
   return (
@@ -32,9 +42,9 @@ function Menu() {
       ></div>
 
       <Header />
-      <nav className={styles.nav}>
-        <img src={menuLogo} alt="" />
-        <section onClick={showModalHandler} className={styles.nav__cart}>
+      <nav className="nav">
+        <Link to="/nav" state={{ products }}><img src={menuLogo} alt="" /></Link>
+        <section onClick={showModalHandler} className="nav__cart">
           <img src={shoppingCartLogo} alt="" />
           <section className={styles['nav__cart-products']}>
             <span>0</span>
