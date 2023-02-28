@@ -6,8 +6,9 @@ const Profile = () => {
     return (
         <div className='profile'>
             <header>
-                <img src={headerPicture} alt="" />
-            </header>  
+                <img src={headerPicture}/>
+            </header>
+            <section className='profile__card'></section>  
         </div>
     );
 };
