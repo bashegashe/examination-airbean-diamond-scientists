@@ -3,26 +3,26 @@ import './Menu.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Product from '../../components/Product/Product';
-import menu from '../../assets/navicon-open.svg';
-import shoppingCart from '../../assets/bag.svg';
+import menuLogo from '../../assets/navicon-open.svg';
+import shoppingCartLogo from '../../assets/bag.svg';
 function Menu() {
   return (
-    <section className="menu-section">
+    <section className="menu">
       <Header />
-      <nav className="header-section">
-        <img src={menu} alt="" />
-        <section className="header-cart">
-          <img src={shoppingCart} alt="" />
-          <section className="header-cart_products">
+      <nav className="nav">
+        <img src={menuLogo} alt="" />
+        <section className="nav__cart">
+          <img src={shoppingCartLogo} alt="" />
+          <section className="nav__cart-products">
             <span>0</span>
           </section>
         </section>
       </nav>
       <main>
-        <section className="menu">
+        <section className="menu__section">
           <h2>MENY</h2>
         </section>
-        <section className="product-section">
+        <section className="product__section">
           <Product />
           <Product />
           <Product />

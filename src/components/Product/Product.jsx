@@ -4,10 +4,10 @@ import plusSign from '../../assets/Vector 3.svg';
 function Product() {
   return (
     <article className="product">
-      <section className="product-add">
+      <section className="product__add">
         <img src={plusSign} alt="" />
       </section>
-      <section className="product-name">
+      <section className="product__name">
         <h3>Bryggkaffe..........</h3>
         <p>Bryggd på månadens bönor</p>
       </section>
