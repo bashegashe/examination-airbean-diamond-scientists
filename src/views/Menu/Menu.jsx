@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Menu.css';
+import styles from './Menu.module.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Product from '../../components/Product/Product';
@@ -7,6 +7,7 @@ import menuLogo from '../../assets/navicon-open.svg';
 import shoppingCartLogo from '../../assets/bag.svg';
 import Cart from '../../components/Cart/Cart';
 import { getCoffeMenu } from '../../utils/api';
+
 function Menu() {
   const [showModal, setShowModal] = useState(false);
   const [products, setProducts] = useState([]);
@@ -24,18 +25,18 @@ function Menu() {
   }, []);
 
   return (
-    <section className="menu">
+    <section className={styles.menu}>
       <div
         style={{ display: showModal ? 'block' : 'none' }}
-        className="modal"
+        className={styles.modal}
       ></div>
 
       <Header />
-      <nav className="nav">
+      <nav className={styles.nav}>
         <img src={menuLogo} alt="" />
-        <section onClick={showModalHandler} className="nav__cart">
+        <section onClick={showModalHandler} className={styles.nav__cart}>
           <img src={shoppingCartLogo} alt="" />
-          <section className="nav__cart-products">
+          <section className={styles['nav__cart-products']}>
             <span>0</span>
           </section>
         </section>
@@ -44,10 +45,10 @@ function Menu() {
       {showModal && <Cart />}
 
       <main>
-        <section className="menu__section">
+        <section className={styles.menu__section}>
           <h2>MENY</h2>
         </section>
-        <section className="product__section">
+        <section className={styles.product__section}>
           {products.map((item) => (
             <Product
               id={item.id}
