@@ -7,11 +7,7 @@ import menuLogo from '../../assets/navicon-open.svg';
 import shoppingCartLogo from '../../assets/bag.svg';
 import Cart from '../../components/Cart/Cart';
 import { getCoffeMenu } from '../../utils/api';
-<<<<<<< Updated upstream
-
-=======
 import { Link, useLocation } from 'react-router-dom';
->>>>>>> Stashed changes
 function Menu() {
   const { state } = useLocation();
 
