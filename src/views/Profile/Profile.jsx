@@ -1,14 +1,17 @@
 import React from 'react';
-import './Profile.css'
+import ProfileForm from '../../components/ProfileForm/ProfileForm';
+import styles from './Profile.module.css'
 import headerPicture from '../../assets/header.svg'
+import menuIcon from '../../assets/navicon-open.svg'
 
 const Profile = () => {
     return (
-        <div className='profile'>
+        <div className={styles.profile}>
             <header>
+                <img className={styles['profile__img-icon']} src={menuIcon}/>
                 <img src={headerPicture}/>
             </header>
-            <section className='profile__card'></section>  
+            <ProfileForm/> 
         </div>
     );
 };
