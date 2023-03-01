@@ -1,13 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import closeIcon from '../../assets/navicon-closed.svg'
 import styles from "./Nav.module.css"
 
 const Nav = () => {
+    const navigate = useNavigate();
+    const { state } = useLocation();
+
+    function handleClick() {
+        navigate(-1, { state: { products: state.products } });
+    }
+
     return (
         <div className={styles.nav}>
             <header className={styles.nav__header}>
-                <img src={closeIcon}/>
+                <a href="#" onClick={handleClick}><img src={closeIcon} /></a>
             </header>
             <section className={styles.nav__menu}>
                 <Link to={"/menu"}> <h2>Meny</h2> </Link>
