@@ -4,11 +4,11 @@ import CartItem from './CartItem/CartItem';
 import Button from '../Button/Button';
 
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
 
 function Cart(props) {
-    const [cartTotal, setCartTotal] = useState(0);
     const cart = useSelector((state) => state.cart);
+
+    let cartTotal = 0;
 
     return (
         <section className={styles.cart}>
@@ -19,7 +19,7 @@ function Cart(props) {
 
                 {
                     cart.map((cartItem) => {
-                        setCartTotal((total) => total + cartItem.quantity * cartItem.price);
+                        cartTotal += cartItem.quantity * cartItem.price; 
 
                         return (
                             <CartItem
