@@ -1,5 +1,6 @@
 .cartItem {
     width: 100%;
+    margin-bottom: 1.5rem;
 }
 
 .cartItem__main {
@@ -27,7 +28,7 @@
 
 .cartItem__price {
     display: block;
-    margin-top: -25px;
+    /* marg in-top: -25px; */
     font-size: 12px;
     line-height: 130%;
 }

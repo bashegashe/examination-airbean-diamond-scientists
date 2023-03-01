@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Rufina&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.landing{
+    position: relative;
+    background-color: #39856D;
+    height: 667px;
+}
+
+.landing  h1{
+    position: absolute;
+    width: 257px;
+    height: 47px;
+    left: 58px;
+    top: 346px;
+    font-family: 'Rufina';
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 52px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.landing h2 {
+    position: absolute;
+width: 257px;
+height: 19px;
+left: 58px;
+top: 396px;
+font-family: 'Work Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 9px;
+line-height: 11px;
+text-align: center;
+letter-spacing: 0.3em;
+color: #FFFFFF;
+}
+
+.landing__leafs {
+    display: flex;
+    justify-content: space-between;
+}
+
+.eclipse {
+    position: absolute;
+    bottom: 337px;
+    left: 154px;
+    display: flex;
+    justify-content: center;
+    height: 64px;
+    width: 64px;
+    border-radius: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+}
