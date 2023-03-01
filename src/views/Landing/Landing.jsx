@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "./Landing.css";
+import styles from "./Landing.module.css";
 import headerLeft from '../../assets/header-left.svg';
 import headerRight from '../../assets/header-right.svg';
 import logo from '../../assets/Vector 2.svg';
@@ -31,14 +31,14 @@ const Landing = () => {
   }, []);
 
   return (
-    <div className='landing'>
-      <header className="landing__header">
+    <div className={styles.landing}>
+      <header className={styles.landing__header}>
         <h1>AIR BEAN</h1>
         <h2>DRONEDELIVERED COFFEE</h2>
       </header>
-      <figure className="landing__leafs">
+      <figure className={styles.landing__leafs}>
         <img src={headerLeft} />
-        <div className="eclipse">
+        <div className={styles.eclipse}>
           <img src={logo} style={{ width: "38px" }} />
         </div>
         <img src={headerRight} />

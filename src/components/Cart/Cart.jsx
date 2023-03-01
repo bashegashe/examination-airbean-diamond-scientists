@@ -3,12 +3,33 @@ import styles from './Cart.module.css';
 import CartItem from './CartItem/CartItem';
 import Button from '../Button/Button';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import * as api from '../../utils/api';
+import { addNewOrder } from '../../actions/cartActions';
+import { useNavigate } from 'react-router-dom';
 
 function Cart(props) {
-    const cart = useSelector((state) => state.cart);
+    const state = useSelector((state) => state);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     let cartTotal = 0;
+
+    async function makeNewOrder() {
+        const order = state.cart.map((cartItem) => {
+            return {
+                name: cartItem.title,
+                price: cartItem.price
+            };
+        });
+
+        const orderResult = await api.makeNewOrder(order);
+
+        dispatch(addNewOrder(orderResult));
+
+        navigate('/status');
+    }
 
     return (
         <section className={styles.cart}>
@@ -18,7 +39,7 @@ function Cart(props) {
                 <h2>Din beställning</h2>
 
                 {
-                    cart.map((cartItem) => {
+                    state.cart.map((cartItem) => {
                         cartTotal += cartItem.quantity * cartItem.price; 
 
                         return (
@@ -43,7 +64,7 @@ function Cart(props) {
                 </section>
 
                 <div className={styles.cart__button}>
-                    <Button type="dark">Take my money!</Button>
+                    <Button type="dark" onClick={makeNewOrder}>Take my money!</Button>
                 </div>
             </div>
         </section>
