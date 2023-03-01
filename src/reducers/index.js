@@ -1,5 +1,6 @@
 const initialState = {
-    cart: []
+    cart: [],
+    coffeeMenu: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -9,6 +10,12 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 cart: [...state.cart, {...action.payload}]
             };
+
+        case 'ADD_COFFEE_MENU':
+            return {
+                ...state,
+                coffeeMenu: [...action.payload]
+            }
 
         default: 
             return state;
