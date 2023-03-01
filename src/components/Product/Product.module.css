@@ -1,0 +1,42 @@
+.product {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.product__add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  background-color: #000;
+  border: none;
+  cursor: pointer;
+}
+.product__name {
+  flex: 1;
+}
+.product__name h3,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.product__name h3 {
+  font-size: 23px;
+}
+
+.product__name h3 span {
+  display: flex;
+  font-size: 12px;
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.4);
+  /* flex: 1; */
+  /* border: 1px dashed rgba(0, 0, 0, 0.4); */
+}
+
+.product__name p {
+  font-size: 12px;
+}
