@@ -4,15 +4,17 @@ import styles from './Profile.module.css'
 import headerPicture from '../../assets/header.svg'
 import menuIcon from '../../assets/navicon-open.svg'
 
+
 const Profile = () => {
-    isLoggedIn = false;
+    const isLoggedIn = false;
+
     return (
         <div className={styles.profile}>
             <header>
                 <img className={styles['profile__img-icon']} src={menuIcon}/>
                 <img src={headerPicture}/>
             </header>
-            <ProfileForm/> 
+            <ProfileForm/>
         </div>
     );
 };
