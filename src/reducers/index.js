@@ -4,7 +4,6 @@ const initialState = {
 };
 
 function rootReducer(state = initialState, action) {
-  console.log(state.cart);
   switch (action.type) {
     case 'ADD_CART_ITEM':
       const itemExistsInCart = state.cart.find((item) => {

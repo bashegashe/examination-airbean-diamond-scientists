@@ -12,7 +12,6 @@ import { getCoffeMenu } from '../../utils/api';
 
 function Menu() {
   const state = useSelector((state) => state);
-  // console.log(state);
   const [showModal, setShowModal] = useState(false);
   const [products, setProducts] = useState([]);
 
