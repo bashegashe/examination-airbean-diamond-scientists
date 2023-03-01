@@ -6,10 +6,10 @@ import Product from '../../components/Product/Product';
 import menuLogo from '../../assets/navicon-open.svg';
 import shoppingCartLogo from '../../assets/bag.svg';
 import Cart from '../../components/Cart/Cart';
-import { getCoffeMenu } from '../../utils/api';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 function Menu() {
-  const { state } = useLocation();
+  const state = useSelector((state) => state);
 
   const [showModal, setShowModal] = useState(false);
   const [products, setProducts] = useState([]);
@@ -19,15 +19,7 @@ function Menu() {
   }
 
   useEffect(() => {
-    async function getData() {
-      const res = await getCoffeMenu();
-      setProducts(res);
-    }
-
-    if (state?.products)
-      setProducts(state.products);
-    else
-      getData();
+    setProducts(state.coffeeMenu);
   }, []);
 
   return (

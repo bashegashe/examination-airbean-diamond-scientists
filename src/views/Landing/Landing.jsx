@@ -19,7 +19,7 @@ const Landing = () => {
       dispatch(addCoffeMenu(menu));
 
       const timer = setTimeout(() => {
-        navigate('/nav');
+        navigate('/menu');
       }, 3500);
 
       return () => {
