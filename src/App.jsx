@@ -1,9 +1,12 @@
 import './App.css';
-import Menu from './views/Menu/Menu';
+import Nav from './views/Nav/Nav';
+import Landing from './views/Landing/Landing';
+
 function App() {
+  
   return (
     <div className="App">
-      <Menu />
+      <Landing/>
     </div>
   );
 }

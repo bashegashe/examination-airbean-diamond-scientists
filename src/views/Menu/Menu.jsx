@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import styles from './Menu.module.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
@@ -7,11 +6,13 @@ import Product from '../../components/Product/Product';
 import menuLogo from '../../assets/navicon-open.svg';
 import shoppingCartLogo from '../../assets/bag.svg';
 import Cart from '../../components/Cart/Cart';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { getCoffeMenu } from '../../utils/api';
-import { Link, useLocation } from 'react-router-dom';
+
 function Menu() {
-  const { state } = useLocation();
-  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+  // console.log(state);
   const [showModal, setShowModal] = useState(false);
   const [products, setProducts] = useState([]);
 
@@ -22,17 +23,18 @@ function Menu() {
       setProducts(res);
     }
 
-    if (state?.products) setProducts(state.products);
-    else getData();
+    // if (state?.products) setProducts(state.products);
+    // else getData();
+    getData();
   }, []);
 
   function showModalHandler() {
     setShowModal(!showModal);
   }
 
-  function addItemToCartHandler() {
-    console.log('added');
-  }
+  useEffect(() => {
+    // setProducts(state.coffeeMenu);
+  }, []);
 
   return (
     <section className={styles.menu}>
@@ -63,7 +65,6 @@ function Menu() {
         <section className={styles.product__section}>
           {products.map((item) => (
             <Product
-              onAddItemToCart={addItemToCartHandler}
               id={item.id}
               title={item.title}
               description={item.desc}
