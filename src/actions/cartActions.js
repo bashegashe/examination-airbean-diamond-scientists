@@ -4,3 +4,10 @@ export const addCartItem = (data) => {
     payload: data,
   };
 };
+
+export const addNewOrder = (data) => {
+  return {
+    type: 'ADD_NEW_ORDER',
+    payload: data
+  }
+};

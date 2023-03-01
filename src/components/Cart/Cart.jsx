@@ -3,16 +3,21 @@ import styles from './Cart.module.css';
 import CartItem from './CartItem/CartItem';
 import Button from '../Button/Button';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import * as api from '../../utils/api';
+import { addNewOrder } from '../../actions/cartActions';
+import { useNavigate } from 'react-router-dom';
 
 function Cart(props) {
-    const cart = useSelector((state) => state.cart);
+    const state = useSelector((state) => state);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     let cartTotal = 0;
 
     async function makeNewOrder() {
-        const order = cart.map((cartItem) => {
+        const order = state.cart.map((cartItem) => {
             return {
                 name: cartItem.title,
                 price: cartItem.price
@@ -21,7 +26,9 @@ function Cart(props) {
 
         const orderResult = await api.makeNewOrder(order);
 
-        console.log(orderResult);
+        dispatch(addNewOrder(orderResult));
+
+        navigate('/status');
     }
 
     return (
@@ -32,7 +39,7 @@ function Cart(props) {
                 <h2>Din beställning</h2>
 
                 {
-                    cart.map((cartItem) => {
+                    state.cart.map((cartItem) => {
                         cartTotal += cartItem.quantity * cartItem.price; 
 
                         return (
