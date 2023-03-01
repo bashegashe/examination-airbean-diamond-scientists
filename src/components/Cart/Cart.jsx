@@ -17,6 +17,9 @@ function Cart(props) {
     let cartTotal = 0;
 
     async function makeNewOrder() {
+        const token = sessionStorage.getItem('USER_TOKEN');
+        let orderResult;
+
         const order = state.cart.map((cartItem) => {
             return {
                 name: cartItem.title,
@@ -24,7 +27,17 @@ function Cart(props) {
             };
         });
 
-        const orderResult = await api.makeNewOrder(order);
+        if (token) {
+            const loggedInFromAPI = await api.isLoggedIn(token);
+
+            if (loggedInFromAPI) {
+                orderResult = await api.makeNewOrder(order, token);
+            } else {
+                orderResult = await api.makeNewOrder(order);
+            }
+        } else {
+            orderResult = await api.makeNewOrder(order);
+        }
 
         dispatch(addNewOrder(orderResult));
 
@@ -40,7 +53,7 @@ function Cart(props) {
 
                 {
                     state.cart.map((cartItem) => {
-                        cartTotal += cartItem.quantity * cartItem.price; 
+                        cartTotal += cartItem.quantity * cartItem.price;
 
                         return (
                             <CartItem
