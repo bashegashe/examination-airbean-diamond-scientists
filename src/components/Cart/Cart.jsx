@@ -4,11 +4,25 @@ import CartItem from './CartItem/CartItem';
 import Button from '../Button/Button';
 
 import { useSelector } from 'react-redux';
+import * as api from '../../utils/api';
 
 function Cart(props) {
     const cart = useSelector((state) => state.cart);
 
     let cartTotal = 0;
+
+    async function makeNewOrder() {
+        const order = cart.map((cartItem) => {
+            return {
+                name: cartItem.title,
+                price: cartItem.price
+            };
+        });
+
+        const orderResult = await api.makeNewOrder(order);
+
+        console.log(orderResult);
+    }
 
     return (
         <section className={styles.cart}>
@@ -43,7 +57,7 @@ function Cart(props) {
                 </section>
 
                 <div className={styles.cart__button}>
-                    <Button type="dark">Take my money!</Button>
+                    <Button type="dark" onClick={makeNewOrder}>Take my money!</Button>
                 </div>
             </div>
         </section>

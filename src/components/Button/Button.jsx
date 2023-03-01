@@ -4,6 +4,7 @@ function Button(props) {
     return (
         <button
             className={props.type === 'light' ? styles['button--light'] : styles['button--dark']}
+            onClick={() => props.onClick && props.onClick()}
         >
             {props.children}
         </button>
