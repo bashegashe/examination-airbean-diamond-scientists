@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import "./About.css";
+import styles from './About.module.css';
 import Header from '../../assets/header.svg';
 import Footer from '../../assets/footer.svg';
 import Lady from '../../assets/grey-lady.svg';
@@ -8,22 +8,22 @@ import openIcon from '../../assets/navicon-open.svg';
 
 const About = () => {
     return (
-        <div className='about'>
-            <header className="about__header">
+        <div className={styles.about}>
+            <header className={styles.about__header}>
                 <img src={Header}/>
-                <Link to="/nav"> <img id="about__icon"src={openIcon}/></Link>
+                <Link to="/nav"> <img id={styles.about__icon}src={openIcon}/></Link>
                 
             </header>
-            <section className="about__content">
-                <h1 className='about__content__title'>Vårt kaffe</h1>
-                <article className='about__content__sub_title'>
+            <section className={styles.about__content}>
+                <h1 className={styles.about__content__title}>Vårt kaffe</h1>
+                <article className={styles.about__content__sub_title}>
                 <p>Pumpkin spice mug, barista cup, sit macchiato, 
                 kopi-luwak, doppio, grounds dripper, crema, strong whipped, 
                 variety extra iced id lungo half and half mazagran. 
                 Pumpkin spice.</p> 
                 </article>
 
-                <article className='about__content__text'>
+                <article className={styles.about__content__text}>
                 <p>Que dark fair trade, spoon decaffeinated, barista wings whipped, 
                 as rich aftertaste, con panna milk black, arabica white rich beans single shot extra affogato. 
                 So affogato macchiato sit extraction instant grinder seasonal organic, turkish single shot, 
@@ -41,12 +41,12 @@ const About = () => {
                 </article>
           
             </section>
-            <figure className='about__founder'>
+            <figure className={styles.about__founder}>
                 <img src={Lady} style={{height:"74px"}}/>
                 <h1>Eva Cortado</h1>
                 <p>VD & Grundare</p>
             </figure>
-        <footer className="about__footer">
+        <footer className={styles.about__footer}>
             <img src={Footer}/>
         </footer>
         </div>
