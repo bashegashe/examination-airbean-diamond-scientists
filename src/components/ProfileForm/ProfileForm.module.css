@@ -64,8 +64,15 @@
 
 .profile__card-bot span{
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .profile__card-button{
     margin-top: 1.5rem;
+}
+
+.profile__card .errorMessage {
+    color: red;
+    margin-top: 0.6rem;
+    display: none;
 }
