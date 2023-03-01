@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import Status from "./views/Status/Status";
 import Nav from "./views/Nav/Nav";
 import About from "./views/About/About";
 import App from "./App";
@@ -8,6 +9,9 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <App />
+    },    {
+        path: '/status',
+        element: <Status />
     },
     {
         path: '/nav',
