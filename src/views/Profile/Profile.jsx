@@ -5,6 +5,7 @@ import headerPicture from '../../assets/header.svg'
 import menuIcon from '../../assets/navicon-open.svg'
 
 const Profile = () => {
+    isLoggedIn = false;
     return (
         <div className={styles.profile}>
             <header>
