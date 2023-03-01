@@ -89,13 +89,20 @@ async function createNewUser(user) { // user = {username: 'string', password: 's
     return newUserResult;
 }
 
+// Uppdaterar token i sessionStorage och returnerar om inloggningen lyckades eller inte
 async function logUserIn(user) { // user = {username: 'string', password: 'string'}
     const loggedResult = await postRequest(`${BASE_URL}/user/login`, {
         username: user.username,
         password: user.password,
     });
 
-    return loggedResult;
+    if (loggedResult.success) {
+        sessionStorage.setItem('USER_TOKEN', loggedResult.token);
+
+        return true;
+    } 
+
+    return false;
 }
 
 export {
