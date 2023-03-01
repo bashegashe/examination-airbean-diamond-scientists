@@ -35,6 +35,12 @@ function Menu() {
     // setProducts(state.coffeeMenu);
   }, []);
 
+  let cartCounter = 0;
+
+  state.cart.map((cartItem) => {
+    cartCounter += cartItem.quantity;
+  });
+
   return (
     <section className={styles.menu}>
       <div
@@ -50,7 +56,9 @@ function Menu() {
         <section onClick={showModalHandler} className={styles.nav__cart}>
           <img src={shoppingCartLogo} alt="" />
           <section className={styles['nav__cart-products']}>
-            <span>0</span>
+            <span>
+              {cartCounter}
+            </span>
           </section>
         </section>
       </nav>
