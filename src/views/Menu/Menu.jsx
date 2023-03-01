@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import styles from './Menu.module.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
@@ -10,25 +11,28 @@ import { getCoffeMenu } from '../../utils/api';
 import { Link, useLocation } from 'react-router-dom';
 function Menu() {
   const { state } = useLocation();
-
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    async function getData() {
+      const res = await getCoffeMenu();
+      console.log(res);
+      setProducts(res);
+    }
+
+    if (state?.products) setProducts(state.products);
+    else getData();
+  }, []);
 
   function showModalHandler() {
     setShowModal(!showModal);
   }
 
-  useEffect(() => {
-    async function getData() {
-      const res = await getCoffeMenu();
-      setProducts(res);
-    }
-
-    if (state?.products)
-      setProducts(state.products);
-    else
-      getData();
-  }, []);
+  function addItemToCartHandler() {
+    console.log('added');
+  }
 
   return (
     <section className={styles.menu}>
@@ -39,7 +43,9 @@ function Menu() {
 
       <Header />
       <nav className={styles.nav}>
-        <Link to="/nav" state={{ products }}><img src={menuLogo} alt="" /></Link>
+        <Link to="/nav" state={{ products }}>
+          <img src={menuLogo} alt="" />
+        </Link>
         <section onClick={showModalHandler} className={styles.nav__cart}>
           <img src={shoppingCartLogo} alt="" />
           <section className={styles['nav__cart-products']}>
@@ -57,6 +63,7 @@ function Menu() {
         <section className={styles.product__section}>
           {products.map((item) => (
             <Product
+              onAddItemToCart={addItemToCartHandler}
               id={item.id}
               title={item.title}
               description={item.desc}

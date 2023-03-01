@@ -2,10 +2,10 @@ import React from 'react';
 import styles from './Product.module.css';
 import plusSignLogo from '../../assets/Vector 3.svg';
 
-function Product({ id, title, description, price }) {
+function Product({ id, title, description, price, onAddItemToCart }) {
   return (
     <article className={styles.product}>
-      <button className={styles.product__add}>
+      <button className={styles.product__add} onClick={onAddItemToCart}>
         <img src={plusSignLogo} alt="plusSign logo" />
       </button>
       <section className={styles.product__name}>
