@@ -1,3 +1,5 @@
+import { getUserToken } from "./helpers";
+
 const BASE_URL = 'https://airbean.awesomo.dev/api';
 
 async function getRequest(url, token) {
@@ -43,19 +45,29 @@ async function getCoffeMenu() {
 }
 
 // Token kan utelämnas för att få en gästs order
-async function getOrder(orderNr, token) {
+async function getOrder(orderNr) {   
+    let token = getUserToken();
+
+    if(!await isLoggedIn(token)) token = null;
+
     const response = await getRequest(`${BASE_URL}/beans/order/status/${orderNr}`, token);
 
     return response;
 }
 
-async function getUserHistory(token) {
+async function getUserHistory() {
+    let token = getUserToken();
+
+    if(!await isLoggedIn(token)) token = null;
+
     const response = await getRequest(`${BASE_URL}/user/history`, token);
 
     return response;
 }
 
-async function isLoggedIn(token) {
+async function isLoggedIn() {
+    const token = getUserToken();
+
     const response = await getRequest(`${BASE_URL}/user/status`, token);
 
     return response.success;
@@ -64,7 +76,6 @@ async function isLoggedIn(token) {
 // POST REQUESTS
 /* ------------------------------------------------------------- */
 
-// Token kan utelämnas för att lägga order som gäst
 // Order ska se ut på följande sätt:
 /**
  * [
@@ -79,14 +90,19 @@ async function isLoggedIn(token) {
         ...
     ]
  */
-async function makeNewOrder(order, token) { // item = {name: 'string', price: number}
+// Gör en order som antingen gäst eller inloggad användare och returnerar orderNr
+async function makeNewOrder(order) { // item = {name: 'string', price: number}
+    let token = getUserToken();
+
+    if(!await isLoggedIn(token)) token = null;
+
     const makeOrderResult = await postRequest(`${BASE_URL}/beans/order`, {
         "details": {
             "order": order
         }
     }, token);
 
-    return makeOrderResult;
+    return makeOrderResult.orderNr;
 }
 
 async function createNewUser(user) { // user = {username: 'string', password: 'string'}
@@ -100,18 +116,18 @@ async function createNewUser(user) { // user = {username: 'string', password: 's
 
 // Uppdaterar token i sessionStorage och returnerar om inloggningen lyckades eller inte
 async function logUserIn(user) { // user = {username: 'string', password: 'string'}
-    const loggedResult = await postRequest(`${BASE_URL}/user/login`, {
+    const loginResult = await postRequest(`${BASE_URL}/user/login`, {
         username: user.username,
         password: user.password,
     });
 
-    if (loggedResult.success) {
-        sessionStorage.setItem('USER_TOKEN', loggedResult.token);
+    if (loginResult.success) {
+        sessionStorage.setItem('USER_TOKEN', loginResult.token);
 
-        return loggedResult;
+        return loginResult;
     } 
 
-    return loggedResult;
+    return loginResult;
 }
 
 export {
