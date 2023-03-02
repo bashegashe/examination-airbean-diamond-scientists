@@ -46,6 +46,7 @@ function Menu() {
       <div
         style={{ display: showModal ? 'block' : 'none' }}
         className={styles.modal}
+        onClick={showModalHandler}
       ></div>
 
       <Header />
