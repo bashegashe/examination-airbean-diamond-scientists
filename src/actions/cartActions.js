@@ -11,3 +11,9 @@ export const addNewOrder = (data) => {
     payload: data
   }
 };
+
+export const clearCartItems = () => {
+  return {
+    type: 'CLEAR_CART_ITEMS'
+  }
+};

@@ -40,6 +40,12 @@ function rootReducer(state = initialState, action) {
         orderNr: action.payload
       }
 
+    case 'CLEAR_CART_ITEMS':
+        return {
+          ...state,
+          cart: []
+        }
+
     default:
       return state;
   }
