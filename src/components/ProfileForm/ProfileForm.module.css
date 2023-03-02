@@ -1,0 +1,78 @@
+.profile__card{
+    position: relative;
+    Width: 341px;
+    Height: 565.77px;
+    background: #F3E4E1;
+    box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.6);
+    border-radius: 3px;
+    padding: 1rem;
+    margin: -2.2rem auto;
+}
+
+.profile__card-main{
+    text-align: center;
+}
+
+.profile__card-top{
+    margin-top: 1rem;
+}
+.profile__card-top h1{
+    font-size: 32px;
+}
+.profile__card-top p{
+    color: #2F2926;
+    font-weight: 400;
+    line-height: 150%;
+    margin-top: 10px;
+}
+
+.profile__card-bot{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1rem;
+}
+
+.profile__card-bot input{
+    margin-top: 7px;
+    border: 1px solid #2F2926;
+    border-radius: 6px;
+    width: 310px;
+    height: 48px;
+    background: #F3E4E1;
+    padding: 1rem;
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+}
+
+.profile__card-bot label{
+    margin-top: 15px;
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 120%;
+}
+
+.profile__card-bot p{
+    margin-top: 2rem;
+    color: #000000;
+}
+
+.profile__card-bot span{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.profile__card-button{
+    margin-top: 1.5rem;
+}
+
+.profile__card .errorMessage {
+    color: red;
+    margin-top: 0.6rem;
+    display: none;
+}
