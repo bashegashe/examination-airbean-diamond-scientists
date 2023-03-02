@@ -46,6 +46,26 @@ function rootReducer(state = initialState, action) {
           cart: []
         }
 
+    case 'REMOVE_CART_ITEM':
+      const updatedCart = [...state.cart];
+      
+      const itemToRemoveIndex = updatedCart.findIndex((cartItem) => {
+        if (cartItem.id === action.payload) {
+          return cartItem;
+        }
+      });
+
+      if (updatedCart[itemToRemoveIndex].quantity > 1) {
+        updatedCart[itemToRemoveIndex].quantity--;
+      } else {
+        updatedCart.splice(itemToRemoveIndex, 1);
+      }
+
+      return {
+        ...state,
+        cart: updatedCart
+      }
+
     default:
       return state;
   }

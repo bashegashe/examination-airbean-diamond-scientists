@@ -53,6 +53,7 @@ function Cart(props) {
 
                         return (
                             <CartItem
+                                id={cartItem.id}
                                 title={cartItem.title}
                                 quantity={cartItem.quantity}
                                 price={cartItem.price + ' kr'}

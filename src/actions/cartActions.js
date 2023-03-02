@@ -17,3 +17,10 @@ export const clearCartItems = () => {
     type: 'CLEAR_CART_ITEMS'
   }
 };
+
+export const removeCartItem = (data) => {
+  return {
+    type: 'REMOVE_CART_ITEM',
+    payload: data
+  }
+}
