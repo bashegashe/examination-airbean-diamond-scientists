@@ -1,5 +1,5 @@
 const initialState = {
-  cart: [],
+  cart: JSON.parse(sessionStorage.getItem('CURRENT_CART')) || [],
   coffeeMenu: [],
   orderNr: null
 };

@@ -37,6 +37,8 @@ function Cart(props) {
         dispatch(addNewOrder(orderNr)); // Lägg till orderNr i redux state
         dispatch(clearCartItems()); // Töm cart
 
+        sessionStorage.removeItem('CURRENT_CART');
+
         navigate('/status');
     }
 

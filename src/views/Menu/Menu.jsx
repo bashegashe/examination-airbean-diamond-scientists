@@ -18,7 +18,6 @@ function Menu() {
   useEffect(() => {
     async function getData() {
       const res = await getCoffeMenu();
-      console.log(res);
       setProducts(res);
     }
 
@@ -26,6 +25,10 @@ function Menu() {
     // else getData();
     getData();
   }, []);
+
+  useEffect(() => {
+    sessionStorage.setItem('CURRENT_CART', JSON.stringify(state.cart));
+  }, [state.cart]);
 
   function showModalHandler() {
     setShowModal(!showModal);
