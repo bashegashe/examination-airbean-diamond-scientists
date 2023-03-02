@@ -1,25 +1,48 @@
 const initialState = {
-    cart: [],
-    coffeeMenu: []
+  cart: [],
+  coffeeMenu: [],
+  order: {}
 };
 
 function rootReducer(state = initialState, action) {
-    switch(action.type) {
-        case 'ADD_CART_ITEM':
-            return {
-                ...state,
-                cart: [...state.cart, {...action.payload}]
-            };
+  switch (action.type) {
+    case 'ADD_CART_ITEM':
+      const itemExistsInCart = state.cart.find((item) => {
+        if (item.id === action.payload.id) {
+          return item;
+        }
+      });
 
-        case 'ADD_COFFEE_MENU':
-            return {
-                ...state,
-                coffeeMenu: [...action.payload]
-            }
+      if (itemExistsInCart) {
+        const updateExistingItemQuantity = state.cart.map((item) => {
+          if (item.id === action.payload.id) {
+            return { ...item, quantity: item.quantity + 1 };
+          }
+          return item;
+        });
+        return { ...state, cart: updateExistingItemQuantity };
+      } else {
+        return {
+          ...state,
+          cart: [...state.cart, { ...action.payload }],
+        };
+      }
 
-        default: 
-            return state;
-    }
+    case 'ADD_COFFEE_MENU':
+      return {
+        ...state,
+        coffeeMenu: [...action.payload],
+      };
+
+    case 'ADD_NEW_ORDER':
+      return {
+        ...state,
+        order: {...action.payload}
+      }
+
+    default:
+      return state;
+  }
 }
 
 export default rootReducer;

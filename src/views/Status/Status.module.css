@@ -17,6 +17,7 @@
     color: rgba(255, 255, 255, 0.7);
     line-height: 120%;
     font-weight: 400;
+    white-space: nowrap;
 }
 
 .status__header span{
@@ -47,6 +48,7 @@
     font-size: 22px;
     line-height: 120%;
     color: #ffff;
+    margin-top: 2rem;
 }
 
 .status__section-bot{

@@ -13,18 +13,21 @@ const router = createBrowserRouter([
         element: <App />
     },
     {
-        path: '/profile',
-        element: <Profile />
-    },
-    {
         path: '/status',
         element: <Status />
+    },
+    
+    {
+        path: '/profile',
+        element: <Profile />
     },
     {
         path: '/nav',
         element: <Nav />
     },
+    
     {
+
         path: '/about',
         element: <About />
     },

@@ -65,15 +65,24 @@ async function isLoggedIn(token) {
 /* ------------------------------------------------------------- */
 
 // Token kan utelämnas för att lägga order som gäst
-async function makeNewOrder(item, token) { // item = {name: 'string', price: number}
+// Order ska se ut på följande sätt:
+/**
+ * [
+        {
+            "name": item.name,
+            "price": item.price
+        },
+        {
+            "name": item.name,
+            "price": item.price
+        },
+        ...
+    ]
+ */
+async function makeNewOrder(order, token) { // item = {name: 'string', price: number}
     const makeOrderResult = await postRequest(`${BASE_URL}/beans/order`, {
         "details": {
-            "order": [
-                {
-                    "name": item.name,
-                    "price": item.price
-                }
-            ]
+            "order": order
         }
     }, token);
 

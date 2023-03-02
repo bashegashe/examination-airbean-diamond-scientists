@@ -8,19 +8,38 @@ import shoppingCartLogo from '../../assets/bag.svg';
 import Cart from '../../components/Cart/Cart';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { getCoffeMenu } from '../../utils/api';
+
 function Menu() {
   const state = useSelector((state) => state);
-
   const [showModal, setShowModal] = useState(false);
   const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    async function getData() {
+      const res = await getCoffeMenu();
+      console.log(res);
+      setProducts(res);
+    }
+
+    // if (state?.products) setProducts(state.products);
+    // else getData();
+    getData();
+  }, []);
 
   function showModalHandler() {
     setShowModal(!showModal);
   }
 
   useEffect(() => {
-    setProducts(state.coffeeMenu);
+    // setProducts(state.coffeeMenu);
   }, []);
+
+  let cartCounter = 0;
+
+  state.cart.map((cartItem) => {
+    cartCounter += cartItem.quantity;
+  });
 
   return (
     <section className={styles.menu}>
@@ -31,11 +50,13 @@ function Menu() {
 
       <Header />
       <nav className={styles.nav}>
-        <Link to="/nav" state={{ products }}><img src={menuLogo} alt="" /></Link>
+        <Link to="/nav" state={{ products }}>
+          <img src={menuLogo} alt="" />
+        </Link>
         <section onClick={showModalHandler} className={styles.nav__cart}>
           <img src={shoppingCartLogo} alt="" />
           <section className={styles['nav__cart-products']}>
-            <span>0</span>
+            <span>{cartCounter}</span>
           </section>
         </section>
       </nav>
