@@ -1,7 +1,7 @@
 const initialState = {
   cart: [],
   coffeeMenu: [],
-  order: {}
+  orderNr: null
 };
 
 function rootReducer(state = initialState, action) {
@@ -37,7 +37,7 @@ function rootReducer(state = initialState, action) {
     case 'ADD_NEW_ORDER':
       return {
         ...state,
-        order: {...action.payload}
+        orderNr: action.payload
       }
 
     default:
