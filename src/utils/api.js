@@ -108,10 +108,10 @@ async function logUserIn(user) { // user = {username: 'string', password: 'strin
     if (loggedResult.success) {
         sessionStorage.setItem('USER_TOKEN', loggedResult.token);
 
-        return true;
+        return loggedResult;
     } 
 
-    return false;
+    return loggedResult;
 }
 
 export {
