@@ -8,15 +8,26 @@ import { getOrder } from '../../utils/api';
 
 const Status = (props) => {
     const [orderETA, setOrderETA] = useState(null);
+    const [orderMessage, setOrderMessage] = useState(null);
+
     const state = useSelector((state) => state);
 
     useEffect(() => {
         async function updateOrderETA() {
             let orderNr = state.orderNr || sessionStorage.getItem('LAST_ORDER_NR');
 
-            const order = await getOrder(orderNr);
+            try {
+                const order = await getOrder(orderNr);
 
-            setOrderETA(order.eta);
+                if (order.eta) {
+                    setOrderETA(order.eta);
+                    setOrderMessage('Din beställning är på väg!');
+                } else {
+                    setOrderMessage('Ingen aktiv beställning hittades!');
+                }
+            } catch(e) {
+                setOrderMessage('Ingen aktiv beställning hittades!');
+            }
         }
 
         updateOrderETA();
@@ -31,14 +42,8 @@ const Status = (props) => {
                 <img src={drone} />
             </section>
             <section className={styles['status__section-mid']}>
-                {
-                    orderETA && orderETA > 0 && (
-                        <div>
-                            <h2>Din beställning är på väg!</h2>
-                            <p><span>{orderETA}</span> minuter</p>
-                        </div>
-                    ) || <h2>Din beställning har levererats!</h2>
-                }
+                <h2>{orderMessage}</h2>
+                {orderETA && <p><span>{orderETA}</span> minuter</p>}
             </section>
             <section className={styles['status__section-bot']}>
                 <Link to="/about"><Button type={'light'}>Ok, cool!</Button></Link>
