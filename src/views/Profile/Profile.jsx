@@ -7,23 +7,15 @@ import * as api from '../../utils/api';
 import { Link } from 'react-router-dom';
 
 const Profile = () => {
-    const [loggedIn, setLoggedIn] = useState(false);
-
     useEffect(() => {
         async function isLoggedIn() {
-            const token = sessionStorage.getItem('USER_TOKEN');
-
-            if(token) {
-                const loggedInFromAPI = await api.isLoggedIn(token);
-
-                if(loggedInFromAPI) {
-                    setLoggedIn(true);
-                }
+            if (await api.isLoggedIn()) {
+                // Navigera till annan sida, användaren är inloggad
             }
         }
 
         isLoggedIn();
-    }, [loggedIn]);
+    }, []);
 
     return (
         <div className={styles.profile}>
@@ -31,7 +23,7 @@ const Profile = () => {
                 <Link to="/nav"><img className={styles['profile__img-icon']} src={menuIcon} /></Link>
                 <img src={headerPicture} />
             </header>
-            <ProfileForm setLoggedIn={setLoggedIn} />
+            <ProfileForm />
         </div>
     );
 };
