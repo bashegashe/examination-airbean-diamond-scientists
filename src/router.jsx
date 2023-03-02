@@ -16,6 +16,7 @@ const router = createBrowserRouter([
         path: '/status',
         element: <Status />
     },
+    
     {
         path: '/profile',
         element: <Profile />
@@ -23,7 +24,10 @@ const router = createBrowserRouter([
     {
         path: '/nav',
         element: <Nav />
-    }, {
+    },
+    
+    {
+
         path: '/about',
         element: <About />
     },
