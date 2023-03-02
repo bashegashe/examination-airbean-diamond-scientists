@@ -28,7 +28,6 @@
 
 .cartItem__price {
     display: block;
-    /* marg in-top: -25px; */
     font-size: 12px;
     line-height: 130%;
 }
