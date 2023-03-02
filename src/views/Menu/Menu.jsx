@@ -56,9 +56,7 @@ function Menu() {
         <section onClick={showModalHandler} className={styles.nav__cart}>
           <img src={shoppingCartLogo} alt="" />
           <section className={styles['nav__cart-products']}>
-            <span>
-              {cartCounter}
-            </span>
+            <span>{cartCounter}</span>
           </section>
         </section>
       </nav>
