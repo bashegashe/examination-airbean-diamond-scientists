@@ -33,8 +33,6 @@ p {
   font-size: 12px;
   font-weight: 100;
   color: rgba(0, 0, 0, 0.4);
-  /* flex: 1; */
-  /* border: 1px dashed rgba(0, 0, 0, 0.4); */
 }
 
 .product__name p {
