@@ -19,17 +19,21 @@ function Cart(props) {
     async function makeNewOrder() {
         if (state.cart.length === 0) return; // Cart måste ha minst en tillagd produkt för att kunna göra beställning
 
-        const order = state.cart.map((cartItem) => {
-            return {
-                name: cartItem.title,
-                price: cartItem.price
-            };
+        const order = [];
+
+        state.cart.map((cartItem) => {
+            Array(cartItem.quantity).fill(0).map(() => {
+                order.push({
+                    name: cartItem.title,
+                    price: cartItem.price
+                });
+            })
         });
 
         const orderNr = await api.makeNewOrder(order);
 
         sessionStorage.setItem('LAST_ORDER_NR', orderNr);
-        
+
         dispatch(addNewOrder(orderNr)); // Lägg till orderNr i redux state
         dispatch(clearCartItems()); // Töm cart
 
