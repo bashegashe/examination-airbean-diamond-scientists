@@ -22,15 +22,15 @@ const ProfileForm = (props) => {
     }
 
     async function userLogin() {
-        const loggedResult = await api.logUserIn({
+        const loginResult = await api.logUserIn({
             username,
             password
         });
 
-        if (loggedResult.success) {
-            props.setLoggedIn(true);            
+        if (loginResult.success) {
+            // Navigera till annan sida, inloggning lyckades 
         } else {
-            showError(loggedResult.message);
+            showError(loginResult.message);
         }
     }
 
@@ -41,7 +41,7 @@ const ProfileForm = (props) => {
         });
 
         if(createNewUser.success) {
-            // Navigera till historik eller annan plats
+            await userLogin(); // Registeringen lyckades, loggar in användaren automatiskt och navigerar vidare
         } else {
             showError(createNewUser.message);
         }
