@@ -41,29 +41,56 @@ function rootReducer(state = initialState, action) {
       }
 
     case 'CLEAR_CART_ITEMS':
-        return {
-          ...state,
-          cart: []
-        }
+      return {
+        ...state,
+        cart: []
+      }
 
     case 'REMOVE_CART_ITEM':
       const updatedCart = [...state.cart];
-      
-      const itemToRemoveIndex = updatedCart.findIndex((cartItem) => {
-        if (cartItem.id === action.payload) {
-          return cartItem;
-        }
-      });
 
-      if (updatedCart[itemToRemoveIndex].quantity > 1) {
-        updatedCart[itemToRemoveIndex].quantity--;
-      } else {
-        updatedCart.splice(itemToRemoveIndex, 1);
+      // Om vi försöker ta bort en vanlig produkt
+      if (action.payload.id) {
+        const itemToRemoveIndex = updatedCart.findIndex((cartItem) => {
+          if (cartItem.id === action.payload.id) {
+            return cartItem;
+          }
+        });
+
+        if (updatedCart[itemToRemoveIndex].quantity > 1) {
+          updatedCart[itemToRemoveIndex].quantity--;
+        } else {
+          updatedCart.splice(itemToRemoveIndex, 1);
+        }
+
+        return {
+          ...state,
+          cart: updatedCart
+        }
       }
 
-      return {
-        ...state,
-        cart: updatedCart
+      // Om vi försöker ta bort en kombinationsprodukt
+      if (!action.payload.id) {
+        const itemsToRemove = action.payload.promotion.promotionItems.map((item) => item.name);
+
+        itemsToRemove.map((itemToBeRemoved) => {
+          const itemToRemoveIndex = updatedCart.findIndex((cartItem) => {
+            if (cartItem.title === itemToBeRemoved) {
+              return cartItem;
+            }
+          });
+
+          if (updatedCart[itemToRemoveIndex].quantity > 1) {
+            updatedCart[itemToRemoveIndex].quantity--;
+          } else {
+            updatedCart.splice(itemToRemoveIndex, 1);
+          }
+        });
+
+        return {
+          ...state,
+          cart: updatedCart
+        }
       }
 
     default:

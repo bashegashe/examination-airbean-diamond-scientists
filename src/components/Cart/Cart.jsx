@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as api from '../../utils/api';
 import { addNewOrder, clearCartItems } from '../../actions/cartActions';
 import { useNavigate } from 'react-router-dom';
+import getPromotionCart from '../../utils/promotions';
 
 function Cart(props) {
     const state = useSelector((state) => state);
@@ -14,7 +15,19 @@ function Cart(props) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    let cartTotal = 0;
+    const promotionCart = getPromotionCart(state.cart);
+
+    let cartTotal = state.cart.reduce((acc, cur) => {
+        return acc + cur.price * cur.quantity;
+    }, 0);
+
+    let promotionCartTotal = promotionCart.reduce((acc, cur) => {
+        const price = cur.promotion?.price ?? cur.price;
+
+        return acc + price * cur.quantity;
+    }, 0);
+
+    const hasPromotion = cartTotal != promotionCartTotal;
 
     async function makeNewOrder() {
         if (state.cart.length === 0) return; // Cart måste ha minst en tillagd produkt för att kunna göra beställning
@@ -50,16 +63,15 @@ function Cart(props) {
                 <h2>Din beställning</h2>
 
                 {
-                    state.cart.map((cartItem) => {
-                        cartTotal += cartItem.quantity * cartItem.price;
-
+                    promotionCart.map((cartItem, i) => {
                         return (
                             <CartItem
                                 id={cartItem.id}
                                 title={cartItem.title}
                                 quantity={cartItem.quantity}
                                 price={cartItem.price + ' kr'}
-                                key={cartItem.id}
+                                promotion={cartItem.promotion}
+                                key={`${cartItem.id}-${i}`}
                             />
                         )
                     })
@@ -69,10 +81,18 @@ function Cart(props) {
                     <article className={styles.cartTotal__main}>
                         <h4 className={styles.cartTotal__title}>Total</h4>
                         <span className={styles.cartTotal__separator}></span>
-                        <h4 className={styles.cartTotal__price}>{cartTotal + ' kr'}</h4>
+                        {!hasPromotion && <h4 className={styles.cartTotal__price}>{cartTotal} kr</h4>}
+                        {hasPromotion && <h4 className={styles.cartTotal__price}>{promotionCartTotal} kr</h4>}
                     </article>
-
-                    <span className={styles.cartTotal__info}>inkl. moms + drönarleverans</span>
+                    <div className={styles.cartTotal__bottom}>
+                        <span className={styles.cartTotal__info}>inkl. moms + drönarleverans</span>
+                        <strike
+                            className={styles.cartTotal__promotionPrice}
+                            style={{ display: hasPromotion ? 'block' : 'none' }}
+                        >
+                            <h4 className={styles.cartTotal__price}>{cartTotal + ' kr'}</h4>
+                        </strike>
+                    </div>
                 </section>
 
                 <div className={styles.cart__button}>
