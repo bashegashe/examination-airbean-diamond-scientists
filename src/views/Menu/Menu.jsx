@@ -9,20 +9,21 @@ import Cart from '../../components/Cart/Cart';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getCoffeMenu } from '../../utils/api';
+import NavigationModal from '../../components/NavigationModal/NavigationModal';
 
 function Menu() {
   const state = useSelector((state) => state);
-  const [showModal, setShowModal] = useState(false);
   const [products, setProducts] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [showNavigationMenu, setShowNavigationMenu] = useState(false);
 
   useEffect(() => {
     async function getData() {
       const res = await getCoffeMenu();
       setProducts(res);
     }
-
-    // if (state?.products) setProducts(state.products);
-    // else getData();
+    if (state?.products) setProducts(state.products);
+    else getData();
     getData();
   }, []);
 
@@ -30,13 +31,15 @@ function Menu() {
     sessionStorage.setItem('CURRENT_CART', JSON.stringify(state.cart));
   }, [state.cart]);
 
+  useEffect(() => {
+    setProducts(state.coffeeMenu);
+  }, []);
+
   function showModalHandler() {
     setShowModal(!showModal);
   }
 
-  useEffect(() => {
-    // setProducts(state.coffeeMenu);
-  }, []);
+  function showNavigationMenuHandler() {}
 
   let cartCounter = 0;
 
@@ -54,10 +57,9 @@ function Menu() {
 
       <Header />
       <nav className={styles.nav}>
-        <Link to="/nav" state={{ products }}>
-          <img src={menuLogo} alt="" />
-        </Link>
-        <section onClick={showModalHandler} className={styles.nav__cart}>
+        <img onClick={showNavigationMenuHandler} src={menuLogo} alt="" />
+
+        <section className={styles.nav__cart}>
           <img src={shoppingCartLogo} alt="" />
           <section className={styles['nav__cart-products']}>
             <span>{cartCounter}</span>
