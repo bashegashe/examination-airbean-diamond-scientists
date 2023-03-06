@@ -1,5 +1,5 @@
 .profile{
     position: relative;
     height: 667px;
-    background: #2F2926;
+    background: var(--color-brown);
 }
