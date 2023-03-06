@@ -18,7 +18,7 @@ function Product({ id, title, description, price }) {
       <section className={styles.product__name}>
         <h3>
           {title}
-          <span></span>
+          <span style={{ display: 'inline' }}></span>
         </h3>
         <p>{description}</p>
       </section>
