@@ -1,5 +1,5 @@
 .nav{
-    background-color: #2F2926;
+    background-color: var(--color-brown);
     height: 667px;
 }
 

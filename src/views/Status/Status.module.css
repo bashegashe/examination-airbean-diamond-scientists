@@ -1,6 +1,6 @@
 .status{
     height: 667px;
-    background: #E5674E;
+    background: var(--color-orange);
     padding: 3rem;
     margin-top: 2rem;
 }

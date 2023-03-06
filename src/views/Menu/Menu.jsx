@@ -3,10 +3,8 @@ import styles from './Menu.module.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Product from '../../components/Product/Product';
-import menuLogo from '../../assets/navicon-open.svg';
 import shoppingCartLogo from '../../assets/bag.svg';
 import Cart from '../../components/Cart/Cart';
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getCoffeMenu } from '../../utils/api';
 import NavigationModal from '../../components/NavigationModal/NavigationModal';
@@ -55,17 +53,16 @@ function Menu() {
         onClick={showModalHandler}
       ></div>
 
-      <Header />
-      <nav className={styles.nav}>
-        <img onClick={showNavigationMenuHandler} src={menuLogo} alt="" />
-
-        <section className={styles.nav__cart}>
-          <img src={shoppingCartLogo} alt="" />
-          <section className={styles['nav__cart-products']}>
-            <span>{cartCounter}</span>
+      <Header hasNav={true}>
+        <nav className={styles.nav}>
+          <section onClick={showModalHandler} className={styles.nav__cart}>
+            <img src={shoppingCartLogo} alt="" />
+            <section className={styles['nav__cart-products']}>
+              <span>{cartCounter}</span>
+            </section>
           </section>
-        </section>
-      </nav>
+        </nav>
+      </Header>
 
       {showModal && <Cart />}
 

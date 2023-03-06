@@ -18,7 +18,11 @@ function Product({ id, title, description, price }) {
       <section className={styles.product__name}>
         <h3>
           {title}
+<<<<<<< HEAD
           <span style={{ display: 'inline' }}></span>
+=======
+          <span className={styles.product__separator}></span>
+>>>>>>> origin/develop
         </h3>
         <p>{description}</p>
       </section>

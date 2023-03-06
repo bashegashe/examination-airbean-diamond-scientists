@@ -1,19 +1,14 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import styles from './About.module.css';
-import Header from '../../assets/header.svg';
+import Header from '../../components/Header/Header';
 import Footer from '../../assets/footer.svg';
 import Lady from '../../assets/grey-lady.svg';
-import openIcon from '../../assets/navicon-open.svg';
 
 const About = () => {
     return (
         <div className={styles.about}>
-            <header className={styles.about__header}>
-                <img src={Header}/>
-                <Link to="/nav"> <img id={styles.about__icon}src={openIcon}/></Link>
-                
-            </header>
+            <Header hasNav={true} />
+            
             <section className={styles.about__content}>
                 <h1 className={styles.about__content__title}>Vårt kaffe</h1>
                 <article className={styles.about__content__sub_title}>

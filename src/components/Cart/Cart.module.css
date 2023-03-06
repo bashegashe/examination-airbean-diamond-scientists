@@ -43,7 +43,7 @@
   font-weight: 700;
   font-size: 32px;
   line-height: 38px;
-  color: #2f2926;
+  color: var(--color-brown);
   margin: 2rem 0;
 }
 

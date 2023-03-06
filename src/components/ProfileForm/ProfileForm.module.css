@@ -2,7 +2,7 @@
     position: relative;
     Width: 341px;
     Height: 565.77px;
-    background: #F3E4E1;
+    background: var(--color-pink);
     box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.6);
     border-radius: 3px;
     padding: 1rem;
@@ -20,7 +20,7 @@
     font-size: 32px;
 }
 .profile__card-top p{
-    color: #2F2926;
+    color: var(--color-brown);
     font-weight: 400;
     line-height: 150%;
     margin-top: 10px;
@@ -35,11 +35,11 @@
 
 .profile__card-bot input{
     margin-top: 7px;
-    border: 1px solid #2F2926;
+    border: 1px solid var(--color-brown);
     border-radius: 6px;
     width: 310px;
     height: 48px;
-    background: #F3E4E1;
+    background: var(--color-pink);
     padding: 1rem;
     font-family: 'Work Sans';
     font-style: normal;

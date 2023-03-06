@@ -7,6 +7,12 @@
     padding: 0;
 }
 
+:root {
+    --color-brown: #2F2926;
+    --color-pink: #F3E4E1;
+    --color-orange: #E5674E;
+}
+
 body {
     background: #FFF;
     max-width: 375px;
