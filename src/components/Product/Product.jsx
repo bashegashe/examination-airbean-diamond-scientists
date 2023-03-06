@@ -18,7 +18,7 @@ function Product({ id, title, description, price }) {
       <section className={styles.product__name}>
         <h3>
           {title}
-          <span></span>
+          <span className={styles.product__separator}></span>
         </h3>
         <p>{description}</p>
       </section>

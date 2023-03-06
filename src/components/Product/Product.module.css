@@ -15,9 +15,11 @@
   border: none;
   cursor: pointer;
 }
+
 .product__name {
   flex: 1;
 }
+
 .product__name h3,
 p {
   padding: 0;
@@ -26,6 +28,7 @@ p {
 
 .product__name h3 {
   font-size: 23px;
+  position: relative;
 }
 
 .product__name h3 span {
@@ -37,4 +40,12 @@ p {
 
 .product__name p {
   font-size: 12px;
+}
+
+.product__separator {
+  position: absolute;
+  width: 80%;
+  top: 22px;
+  right: -8px;
+  border: 1px dashed rgba(0, 0, 0, 0.4);
 }
