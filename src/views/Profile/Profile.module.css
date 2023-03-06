@@ -3,11 +3,3 @@
     height: 667px;
     background: #2F2926;
 }
-.profile header{
-    z-index:-1;
-}
-
-.profile__img-icon{
-    position: absolute;
-    margin: 1rem 0rem 0rem 1rem;
-}
