@@ -13,7 +13,6 @@ function Menu() {
   const state = useSelector((state) => state);
   const [products, setProducts] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [showNavigationMenu, setShowNavigationMenu] = useState(false);
 
   useEffect(() => {
     async function getData() {
@@ -37,8 +36,6 @@ function Menu() {
     setShowModal(!showModal);
   }
 
-  function showNavigationMenuHandler() {}
-
   let cartCounter = 0;
 
   state.cart.map((cartItem) => {
@@ -52,6 +49,8 @@ function Menu() {
         className={styles.modal}
         onClick={showModalHandler}
       ></div>
+
+      {/* <NavigationModal /> */}
 
       <Header hasNav={true}>
         <nav className={styles.nav}>
