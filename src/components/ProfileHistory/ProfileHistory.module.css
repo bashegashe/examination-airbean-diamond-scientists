@@ -1,0 +1,33 @@
+h1 {
+    font-weight: 700;
+    line-height: 120%;
+    color: #FFFFFF;
+    font-size: 22px;
+}
+
+p, h2 {
+    color: #FFFFFF;;
+}
+.Profile__history {
+    background-color: #2F2926;
+    position: relative;
+}
+
+.profile__header{
+    display: flex;
+    flex-direction: column;
+}
+
+.profile__header h1 {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.profile__content {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 30px;
+}
+
