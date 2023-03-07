@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import Status from "./views/Status/Status";
-import Nav from "./views/Nav/Nav";
 import Profile from "./views/Profile/Profile";
 
 import About from "./views/About/About";
@@ -21,11 +20,6 @@ const router = createBrowserRouter([
         path: '/profile',
         element: <Profile />
     },
-    {
-        path: '/nav',
-        element: <Nav />
-    },
-    
     {
 
         path: '/about',
