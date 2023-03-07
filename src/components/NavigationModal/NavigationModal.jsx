@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import closeIcon from '../../assets/navicon-closed.svg';
 import styles from './NavigationModal.module.css';
@@ -13,8 +13,7 @@ const NavigationModal = ({ showNavigationMenuHandler }) => {
       </header>
       <section className={styles.nav__menu}>
         <Link to={'/menu'}>
-          {' '}
-          <h2>Meny</h2>{' '}
+          <h2>Meny</h2>
         </Link>
         <hr />
         <Link to={'/about'}>
