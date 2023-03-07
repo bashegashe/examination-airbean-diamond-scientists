@@ -17,6 +17,7 @@
 .cartItem__separator {
     flex: 1;
     border: 1px dashed rgba(0, 0, 0, 0.4);
+    min-width: 20px;
 }
 
 .cartItem__quantity {
@@ -31,10 +32,33 @@
     font-size: 12px;
     line-height: 130%;
     margin-top: -.5rem;
+    position: relative;
 }
 
 .cartItem__removeButton {
     margin-top: auto;
     margin-left: 1rem;
+    cursor: pointer;
+}
+
+.cartItem__priceContainer {
+    display: flex;
+    gap: 1rem;
+    margin-top: .5rem;
+}
+
+.cartItem__promotionPrice {
+    color: red; 
+    display: none;
+}
+
+.cartItem__promotion {
+    background: lightgreen;
+    padding: .1rem .5rem;
+    border: 1px solid black;
+    border-radius: 1rem;
+    margin-top: -.5rem;
+    font-size: 8px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     cursor: pointer;
 }
