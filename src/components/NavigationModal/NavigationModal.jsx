@@ -12,23 +12,23 @@ const NavigationModal = ({ showNavigationMenuHandler }) => {
         </a>
       </header>
       <section className={styles.nav__menu}>
-        <Link to={'/menu'}>
+        <Link to={'/menu'} onClick={showNavigationMenuHandler}>
           <h2>Meny</h2>
         </Link>
         <hr />
-        <Link to={'/about'}>
+        <Link to={'/about'} onClick={showNavigationMenuHandler}>
           <h2>Vårt kaffe</h2>
         </Link>
         <hr />
-        <Link to={'/profile'}>
+        <Link to={'/profile'} onClick={showNavigationMenuHandler}>
           <h2>Min profil</h2>
         </Link>
         <hr />
-        <Link to={'/status'}>
+        <Link to={'/status'} onClick={showNavigationMenuHandler}>
           <h2>Orderstatus</h2>
         </Link>
         <hr />
-        <Link to={'/profile'}>
+        <Link to={'/profile'} onClick={showNavigationMenuHandler}>
           <h2>Orderhistorik</h2>
         </Link>
       </section>
