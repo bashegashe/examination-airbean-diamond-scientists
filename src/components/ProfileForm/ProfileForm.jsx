@@ -57,7 +57,7 @@ const ProfileForm = (props) => {
                     <img src={profileImg} />
                     <h1>Välkommen till AirBean-familjen!</h1>
                     {page === "login" ?
-                        <p>logga in nedan för att se din orderhistorik.</p> :
+                        <p>Logga in nedan för att se din orderhistorik.</p> :
                         <p>Genom att skapa ett konto nedan kan du spara och se din orderhistorik.</p>
                     }
 
@@ -68,12 +68,12 @@ const ProfileForm = (props) => {
                     <label htmlFor="">Lösenord</label>
                     <input type="password" value={password} onChange={(event) => setPassword(event.currentTarget.value)} />
                     {page === "login" ?
-                        <p>Inget konto? Skapa ett
+                        <p>Inget konto? Skapa ett <span> </span>
                             <span className={styles['profile__card-bot-span']} onClick={() => setPage('register')}>
                                 här
                             </span>
                         </p> :
-                        <p>Redan medlem? Logga in
+                        <p>Redan medlem? Logga in <span> </span>
                             <span className={styles['profile__card-bot-span']} onClick={() => setPage('login')}>
                                 här
                             </span>
