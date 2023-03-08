@@ -19,8 +19,6 @@ const PROMOTIONS = [
         price: 20,
       },
     ],
-
-    max: 1, // default -> infinite
   },
 ];
 
