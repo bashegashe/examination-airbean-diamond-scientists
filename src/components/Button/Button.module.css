@@ -1,5 +1,5 @@
 .button--dark {
-    background: #2F2926;
+    background: var(--color-brown);
     min-width: 248px;
     min-height: 55px;
     border-radius: 50px;
@@ -20,6 +20,7 @@
     line-height: 28.8px;
     text-align: center;
     font-weight: 700;
-    color: #2F2926;
+    color: var(--color-brown);
     cursor: pointer;
+    border: none;
 }
