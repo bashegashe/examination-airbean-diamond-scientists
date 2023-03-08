@@ -12,8 +12,7 @@ const Profile = () => {
                 <img className={styles['profile__img-icon']} src={menuIcon}/>
                 <img src={headerPicture}/>
             </header>
-           {/*  <ProfileForm/>  */}
-            <ProfileHistory/>
+          <ProfileForm/>
         </div>
     );
 };
