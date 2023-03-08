@@ -26,12 +26,6 @@ function rootReducer(state = initialState, action) {
         };
       }
 
-    case 'ADD_NEW_ORDER':
-      return {
-        ...state,
-        orderNr: action.payload
-      }
-
     case 'CLEAR_CART_ITEMS':
       return {
         ...state,

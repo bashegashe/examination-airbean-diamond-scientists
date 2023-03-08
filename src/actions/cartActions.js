@@ -5,13 +5,6 @@ export const addCartItem = (data) => {
   };
 };
 
-export const addNewOrder = (data) => {
-  return {
-    type: 'ADD_NEW_ORDER',
-    payload: data
-  }
-};
-
 export const clearCartItems = () => {
   return {
     type: 'CLEAR_CART_ITEMS'

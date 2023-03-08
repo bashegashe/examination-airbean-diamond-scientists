@@ -5,7 +5,7 @@ import Button from '../Button/Button';
 
 import { useSelector, useDispatch } from 'react-redux';
 import * as api from '../../utils/api';
-import { addNewOrder, clearCartItems } from '../../actions/cartActions';
+import { clearCartItems } from '../../actions/cartActions';
 import { useNavigate } from 'react-router-dom';
 import getPromotionCart from '../../utils/promotions';
 
@@ -47,7 +47,6 @@ function Cart(props) {
 
         sessionStorage.setItem('LAST_ORDER_NR', orderNr);
 
-        dispatch(addNewOrder(orderNr)); // Lägg till orderNr i redux state
         dispatch(clearCartItems()); // Töm cart
 
         sessionStorage.removeItem('CURRENT_CART');
