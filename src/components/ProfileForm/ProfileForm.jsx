@@ -5,6 +5,7 @@ import Button from '../Button/Button.jsx'
 import { useState } from 'react';
 import { Form } from 'react-router-dom';
 import * as api from '../../utils/api';
+import ProfileHistory from '../ProfileHistory/ProfileHistory';
 
 const ProfileForm = (props) => {
     const [page, setPage] = useState('login')
@@ -28,10 +29,10 @@ const ProfileForm = (props) => {
         });
 
         if (loginResult.success) {
-            // Navigera till annan sida, inloggning lyckades 
-
             sessionStorage.setItem('USER_TOKEN', loginResult.token);
             sessionStorage.setItem('USER_NAME', username);
+
+            props.setLoggedIn(true);
         } else {
             showError(loginResult.message);
         }
