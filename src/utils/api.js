@@ -1,5 +1,3 @@
-import { getUserToken } from "./helpers";
-
 const BASE_URL = 'https://airbean.awesomo.dev/api';
 
 async function getRequest(url, token) {
@@ -9,10 +7,14 @@ async function getRequest(url, token) {
 
     if (token) headers['Authorization'] = `Bearer ${token}`;
 
-    const response = await fetch(url, {headers});
-    const data = await response.json();
+    try {
+        const response = await fetch(url, { headers });
+        const data = await response.json();
 
-    return data;
+        return data;
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 async function postRequest(url, body, token) {
@@ -23,32 +25,61 @@ async function postRequest(url, body, token) {
 
     if (token) headers['Authorization'] = `Bearer ${token}`;
 
-    const response = await fetch(url, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(body)
-    });
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify(body)
+        });
 
-    const data = await response.json();
+        const data = await response.json();
 
-    return data;
+        return data;
+    } catch(e) {
+        console.error(e);
+    }
 }
- 
+
+async function validateToken() {
+    const token = sessionStorage.getItem('USER_TOKEN');
+
+    if (!token) {
+        return null;
+    } else {
+        const response = await fetch(`${BASE_URL}/user/status`, {
+            headers: {
+                'accept': 'application/json', 
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            return token;
+        } else {
+            sessionStorage.removeItem('USER_TOKEN');
+            sessionStorage.removeItem('USER_NAME');
+
+            return null;
+        }
+    }
+}
+
 /* ------------------------------------------------------------- */
 
 // GET REQUESTS
 /* ------------------------------------------------------------- */
-async function getCoffeMenu() {
+async function getCoffeeMenu() {
     const response = await getRequest(`${BASE_URL}/beans`);
 
     return response.menu;
 }
 
-// Token kan utelämnas för att få en gästs order
-async function getOrder(orderNr) {   
-    let token = getUserToken();
+async function getOrder(orderNr) {
+    if (!orderNr) return {};
 
-    if(!await isLoggedIn(token)) token = null;
+    const token = await validateToken();
 
     const response = await getRequest(`${BASE_URL}/beans/order/status/${orderNr}`, token);
 
@@ -56,9 +87,7 @@ async function getOrder(orderNr) {
 }
 
 async function getUserHistory() {
-    let token = getUserToken();
-
-    if(!await isLoggedIn(token)) token = null;
+    const token = await validateToken();
 
     const response = await getRequest(`${BASE_URL}/user/history`, token);
 
@@ -66,35 +95,15 @@ async function getUserHistory() {
 }
 
 async function isLoggedIn() {
-    const token = getUserToken();
-
-    const response = await getRequest(`${BASE_URL}/user/status`, token);
-
-    return response.success;
+    return await validateToken();
 }
 
 // POST REQUESTS
 /* ------------------------------------------------------------- */
 
-// Order ska se ut på följande sätt:
-/**
- * [
-        {
-            "name": item.name,
-            "price": item.price
-        },
-        {
-            "name": item.name,
-            "price": item.price
-        },
-        ...
-    ]
- */
 // Gör en order som antingen gäst eller inloggad användare och returnerar orderNr
 async function makeNewOrder(order) { // item = {name: 'string', price: number}
-    let token = getUserToken();
-
-    if(!await isLoggedIn(token)) token = null;
+    const token = await validateToken();
 
     const makeOrderResult = await postRequest(`${BASE_URL}/beans/order`, {
         "details": {
@@ -114,28 +123,21 @@ async function createNewUser(user) { // user = {username: 'string', password: 's
     return newUserResult;
 }
 
-// Uppdaterar token i sessionStorage och returnerar om inloggningen lyckades eller inte
 async function logUserIn(user) { // user = {username: 'string', password: 'string'}
     const loginResult = await postRequest(`${BASE_URL}/user/login`, {
         username: user.username,
         password: user.password,
     });
 
-    if (loginResult.success) {
-        sessionStorage.setItem('USER_TOKEN', loginResult.token);
-
-        return loginResult;
-    } 
-
     return loginResult;
 }
 
 export {
-    getCoffeMenu, 
-    getOrder, 
-    getUserHistory, 
-    isLoggedIn, 
-    makeNewOrder, 
-    createNewUser, 
+    getCoffeeMenu,
+    getOrder,
+    getUserHistory,
+    isLoggedIn,
+    makeNewOrder,
+    createNewUser,
     logUserIn
 }

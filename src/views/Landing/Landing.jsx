@@ -4,30 +4,18 @@ import styles from "./Landing.module.css";
 import headerLeft from '../../assets/header-left.svg';
 import headerRight from '../../assets/header-right.svg';
 import logo from '../../assets/Vector 2.svg';
-import { getCoffeMenu } from '../../utils/api';
-import { addCoffeMenu } from '../../actions/menuActions';
-import { useDispatch } from 'react-redux';
 
 const Landing = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    async function getMenu() {
-      const menu = await getCoffeMenu();
+    const timer = setTimeout(() => {
+      navigate('/menu');
+    }, 3500);
 
-      dispatch(addCoffeMenu(menu));
-
-      const timer = setTimeout(() => {
-        navigate('/menu');
-      }, 3500);
-
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-
-    getMenu();
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   return (

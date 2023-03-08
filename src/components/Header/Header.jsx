@@ -1,5 +1,4 @@
 import header from '../../assets/header.svg';
-import { Link } from 'react-router-dom';
 import menuLogo from '../../assets/navicon-open.svg';
 import NavigationModal from '../NavigationModal/NavigationModal';
 import { useState } from 'react';
@@ -29,9 +28,7 @@ function Header({ hasNav, children }) {
               cursor: 'pointer',
             }}
           >
-            {/* <Link to="/nav"> */}
             <img src={menuLogo} alt="" />
-            {/* </Link> */}
           </div>
         )}
         <img src={header} alt="Header" style={{ height: '113px' }} />

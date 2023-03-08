@@ -3,26 +3,28 @@ import Button from '../../components/Button/Button';
 import drone from '../../assets/Group 5.svg'
 import styles from "./Status.module.css"
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { getOrder } from '../../utils/api';
+import * as api from '../../utils/api';
 
 const Status = (props) => {
+    const [orderNr, setOrderNr] = useState(null);
     const [orderETA, setOrderETA] = useState(null);
     const [orderMessage, setOrderMessage] = useState(null);
 
-    const state = useSelector((state) => state);
-
     useEffect(() => {
-        async function updateOrderETA() {
-            let orderNr = state.orderNr || sessionStorage.getItem('LAST_ORDER_NR');
+        async function getOrder() {
+            const tempOrderNr = sessionStorage.getItem('LAST_ORDER_NR');
 
             try {
-                const order = await getOrder(orderNr);
+                const order = await api.getOrder(tempOrderNr);
 
                 if (order.eta) {
                     setOrderETA(order.eta);
+                    setOrderNr(tempOrderNr);
+
                     setOrderMessage('Din beställning är på väg!');
                 } else {
+                    sessionStorage.removeItem('LAST_ORDER_NR');
+
                     setOrderMessage('Ingen aktiv beställning hittades!');
                 }
             } catch(e) {
@@ -30,13 +32,13 @@ const Status = (props) => {
             }
         }
 
-        updateOrderETA();
+        getOrder();
     }, []);
 
     return (
         <div className={styles.status}>
             <header className={styles.status__header}>
-                <p>Ordernummer <span>#{state.orderNr || sessionStorage.getItem('LAST_ORDER_NR')}</span></p>
+                { orderNr && <p>Ordernummer <span>#{orderNr}</span></p> }
             </header>
             <section className={styles['status__section-drone']}>
                 <img src={drone} />

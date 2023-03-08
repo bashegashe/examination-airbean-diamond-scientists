@@ -1,7 +1,5 @@
 const initialState = {
-  cart: JSON.parse(sessionStorage.getItem('CURRENT_CART')) || [],
-  coffeeMenu: [],
-  orderNr: null
+  cart: JSON.parse(sessionStorage.getItem('CURRENT_CART')) || []
 };
 
 function rootReducer(state = initialState, action) {
@@ -27,12 +25,6 @@ function rootReducer(state = initialState, action) {
           cart: [...state.cart, { ...action.payload }],
         };
       }
-
-    case 'ADD_COFFEE_MENU':
-      return {
-        ...state,
-        coffeeMenu: [...action.payload],
-      };
 
     case 'ADD_NEW_ORDER':
       return {

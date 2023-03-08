@@ -6,8 +6,7 @@ import Product from '../../components/Product/Product';
 import shoppingCartLogo from '../../assets/bag.svg';
 import Cart from '../../components/Cart/Cart';
 import { useSelector } from 'react-redux';
-import { getCoffeMenu } from '../../utils/api';
-import NavigationModal from '../../components/NavigationModal/NavigationModal';
+import * as api from '../../utils/api';
 
 function Menu() {
   const state = useSelector((state) => state);
@@ -15,22 +14,18 @@ function Menu() {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    async function getData() {
-      const res = await getCoffeMenu();
+    async function getCoffeeMenu() {
+      const res = await api.getCoffeeMenu();
+
       setProducts(res);
     }
-    if (state?.products) setProducts(state.products);
-    else getData();
-    getData();
+
+    getCoffeeMenu();
   }, []);
 
   useEffect(() => {
     sessionStorage.setItem('CURRENT_CART', JSON.stringify(state.cart));
   }, [state.cart]);
-
-  useEffect(() => {
-    setProducts(state.coffeeMenu);
-  }, []);
 
   function showModalHandler() {
     setShowModal(!showModal);
@@ -49,8 +44,6 @@ function Menu() {
         className={styles.modal}
         onClick={showModalHandler}
       ></div>
-
-      {/* <NavigationModal /> */}
 
       <Header hasNav={true}>
         <nav className={styles.nav}>
