@@ -3,9 +3,18 @@ import styles from './CartItem.module.css';
 import removeButton from '../../../assets/removeButton.svg';
 import { useDispatch } from 'react-redux';
 import { removeCartItem } from '../../../actions/cartActions';
+import CartPromotionItem from '../CartPromotionItem/CartPromotionItem';
 
 function CartItem({ id, title, quantity, price, promotion }) {
     const dispatch = useDispatch();
+
+    let itemPriceText;
+
+    if (!promotion && quantity > 1) {
+        itemPriceText = `${price} x ${quantity} = ${parseInt(price) * quantity} kr`;
+    } else if (!promotion && quantity === 1) {
+        itemPriceText = price;
+    }
 
     return (
         <section className={styles.cartItem}>
@@ -17,49 +26,15 @@ function CartItem({ id, title, quantity, price, promotion }) {
                     className={styles.cartItem__removeButton}
                     src={removeButton}
                     alt="Remove"
-                    onClick={() => dispatch(removeCartItem({ title, id, promotion }))}
+                    onClick={() => dispatch(removeCartItem({ id, promotion }))}
                 />
             </article>
 
             <div className={styles.cartItem__priceContainer}>
-                <strike
-                    className={styles.cartItem__promotionPrice}
-                    style={{ display: promotion !== undefined ? 'block' : 'none' }}
-                >
-                    {promotion && !promotion.promotionItems && (
-                        <span className={styles.cartItem__price}>{parseInt(price) * quantity} kr</span>
-                    )}
-                    {promotion && promotion.promotionItems && (
-                        <span className={styles.cartItem__price}>{parseInt(price)} kr</span>
-                    )}
-                </strike>
-
-                {promotion && promotion.price > 0 && quantity > 1 && (
-                    <span className={styles.cartItem__price}>
-                        {promotion.price} kr x {quantity} = {parseInt(promotion.price) * quantity} kr
-                    </span>
-                )}
-                
-                {promotion && promotion.price > 0 && quantity === 1 && (
-                    <span className={styles.cartItem__price}>{promotion.price} kr</span>
-                )}
-
-                {!promotion && quantity > 1 && (
-                    <span className={styles.cartItem__price}>
-                        {price} x {quantity} = {parseInt(price) * quantity} kr
-                    </span>
-                )}
-
-                {!promotion && quantity === 1 && <span className={styles.cartItem__price}>{price}</span>}
+                {!promotion && <span className={styles.cartItem__price}>{itemPriceText}</span> }
 
                 {promotion && (
-                    <span
-                        className={styles.cartItem__promotion}
-                        style={{ ...promotion.style }}
-                        title={promotion.description}
-                    >
-                        KAMPANJ
-                    </span>
+                    <CartPromotionItem quantity={quantity} price={price} promotion={promotion} />
                 )}
             </div>
         </section>
