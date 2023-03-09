@@ -1,5 +1,6 @@
 .cartItem {
     width: 100%;
+    margin-bottom: 1.5rem;
 }
 
 .cartItem__main {
@@ -16,6 +17,7 @@
 .cartItem__separator {
     flex: 1;
     border: 1px dashed rgba(0, 0, 0, 0.4);
+    min-width: 20px;
 }
 
 .cartItem__quantity {
@@ -27,7 +29,20 @@
 
 .cartItem__price {
     display: block;
-    margin-top: -25px;
     font-size: 12px;
     line-height: 130%;
+    margin-top: -.5rem;
+    position: relative;
+}
+
+.cartItem__removeButton {
+    margin-top: auto;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+.cartItem__priceContainer {
+    display: flex;
+    gap: 1rem;
+    margin-top: .5rem;
 }
